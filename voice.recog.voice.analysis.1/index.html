@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        Buffer Byte Size: <input id="bufferSizeInput" type="text" value="512" onchange="adjustBufferSize(this)"/><br/>
+        Analyze Loop Ms: <input id="loopMsInput" type="text" value="5" onchange="adjustAnalyzeLoopMs(this)"/><br/>
+        Silence Ms: <input id="silenceMsInput" type="text" value="250" onchange="adjustSilenceMs(this)"/><br/>
+        Min Sound Volume Delta: <input id="minSoundVolumeDeltaInput" type="text" value="15" onchange="adjustMinSoundVolumeDelta(this)"/><br/>
+        <button id="startBtn" onclick="start()">Start</button>
+        <button id="stopBtn" onclick="stop()">Stop</button><br/>
+        <audio id="player1" controls autoplay ></audio>
+        <hr>
+        <progress id="posVolumeProgressBar" value="0" max=129></progress><br/>
+        <progress id="negVolumeProgressBar" value="0" max=129></progress><br/>
+        <font size="+2">
+        Sound Ms: <span id="soundSecondsElem">0</span><br/>
+        Silence Ms: <span id="silenceSecondsElem">0</span><br/>
+        Num Phrases: <span id="numPhrasesElem">0</span><br/>
+        </font>
+    </body>
+    <script src="index.js"></script>
+</html>

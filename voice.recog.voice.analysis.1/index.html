@@ -4,8 +4,8 @@
     <body>
         Buffer Byte Size: <input id="bufferSizeInput" type="text" value="512" onchange="adjustBufferSize(this)"/><br/>
         Analyze Loop Ms: <input id="loopMsInput" type="text" value="5" onchange="adjustAnalyzeLoopMs(this)"/><br/>
-        Silence Ms: <input id="silenceMsInput" type="text" value="250" onchange="adjustSilenceMs(this)"/><br/>
-        Min Sound Volume Delta: <input id="minSoundVolumeDeltaInput" type="text" value="15" onchange="adjustMinSoundVolumeDelta(this)"/><br/>
+        Silence Ms: <input id="silenceMsInput" type="text" value="200" onchange="adjustSilenceMs(this)"/><br/>
+        Min Sound Volume Delta: <input id="minSoundVolumeDeltaInput" type="text" value="8" onchange="adjustMinSoundVolumeDelta(this)"/><br/>
         <button id="startBtn" onclick="start()">Start</button>
         <button id="stopBtn" onclick="stop()">Stop</button><br/>
         <audio id="player1" controls autoplay ></audio>

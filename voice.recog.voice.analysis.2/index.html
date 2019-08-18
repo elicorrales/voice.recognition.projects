@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        Buffer Byte Size: <input id="bufferSizeInput" type="text" value="256" onchange="adjustBufferSize(this)"/><br/>
+        Analyze Loop Ms: <input id="loopMsInput" type="text" value="2" onchange="adjustAnalyzeLoopMs(this)"/><br/>
+        Silence Ms: <input id="silenceMsInput" type="text" value="200" onchange="adjustSilenceMs(this)"/><br/>
+        Min Sound Volume Delta: <input id="minSoundVolumeDeltaInput" type="text" value="4" onchange="adjustMinSoundVolumeDelta(this)"/><br/>
+        <button id="startBtn" onclick="start()">Initialize</button>
+        <button id="recordBtn" onclick="startRecording()">Record</button><br/>
+        <!--
+        -->
+        <audio id="player1" autoplay ></audio>
+        <hr>
+        <progress id="posVolumeProgressBar" value="0" max=129></progress><br/>
+        <!--
+        <progress id="negVolumeProgressBar" value="0" max=129></progress><br/>
+        -->
+        <font size="+2">
+        Sound Ms: <span id="soundMsElem">0</span><br/>
+        Silence Ms: <span id="silenceMsElem">0</span><br/>
+        Num Phrases: <span id="numPhrasesElem">0</span><br/>
+        <hr>
+        <hr>
+        <strong>Features:</strong>
+        <hr>
+        Length Features<br/>
+        <hr>
+        Phrase Total Ms: <span id="phraseTotalMsElem">0</span><br/>
+        Num Phrase Parts: <span id="numPhrasePartsElem">0</span><br/>
+        <div id="phrasePartsMsListElem"></div>
+        </font>
+    </body>
+    <script src="index.js"></script>
+</html>

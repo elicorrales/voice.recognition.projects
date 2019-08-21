@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container container-fluid">
+        <button id="startBtn" class="btn btn-default" onclick="initialize()">Initialize</button>
+        <button id="recordBtn" class="btn btn-default" onclick="startRecording()">Record</button>
+        <button id="startStopPredictionBtn" class="btn btn-default"
+            onclick="startStopPrediction(this)">Predict</button><br />
+
+        <hr>
+            <strong>Commands:</strong>
+            <div id="commandsListElem"></div>
+        <!--
+        -->
+        <audio id="player1" autoplay></audio>
+        <hr>
+        <progress id="posVolumeProgressBar" value="0" max=129></progress><br />
+        <progress id="negVolumeProgressBar" value="0" max=129></progress><br />
+        <font size="+1">
+            <hr>
+
+
+            <hr>
+
+            <strong>Prediction:</strong>
+            <span id="percentCorrectElem"></span>
+            <div id="predictionElem"></div>
+            <hr>
+
+            <strong>Features:</strong>
+            <hr>
+            Phrase Total Ms: <span id="phraseTotalMsElem">0</span><br />
+            <div id="phrasePartsMsListElem"></div>
+            <hr>
+            Num Phrase Parts: <span id="numPhrasePartsElem">0</span><br />
+            Volume Array Len: <span id="volumeArrayLenElem">0</span><br />
+            <hr>
+            Sound Ms: <span id="soundMsElem">0</span><br />
+            Silence Ms: <span id="silenceMsElem">0</span><br />
+            Num Phrases: <span id="numPhrasesElem">0</span><br />
+        </font>
+        <hr>
+        Buffer Byte Size: <input id="bufferSizeInput" type="text" value="1024" onchange="adjustBufferSize(this)" /><br />
+        Analyze Loop Ms: <input id="loopMsInput" type="text" value="2" onchange="adjustAnalyzeLoopMs(this)" /><br />
+        Silence Ms: <input id="silenceMsInput" type="text" value="200" onchange="adjustSilenceMs(this)" /><br />
+        Min Sound Volume Delta: <input id="minSoundVolumeDeltaInput" type="text" value="4"
+            onchange="adjustMinSoundVolumeDelta(this)" /><br />
+        <hr>
+    </div>
+</body>
+<script src="matrix.js"></script>
+<script src="nn.js"></script>
+<script src="index.js"></script>
+
+</html>

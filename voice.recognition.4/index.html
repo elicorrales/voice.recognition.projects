@@ -6,55 +6,80 @@
 </head>
 
 <body>
+
     <div class="container container-fluid">
-        <button id="startBtn" class="btn btn-default" onclick="initialize()">Initialize</button>
-        <button id="recordBtn" class="btn btn-default" onclick="startRecording()">Record</button>
-        <button id="startStopPredictionBtn" class="btn btn-default"
-            onclick="startStopPrediction(this)">Predict</button><br />
 
-        <hr>
-            <strong>Commands:</strong>
-            <div id="commandsListElem"></div>
+        <button id="loadYesnoTrainingDataDataBtn" class="btn btn-default" onclick="loadYesnoTrainingData()">Load Yesno Training Data</button>
+        <button id="loadYesnoNeuralNetworkDataBtn" class="btn btn-default" onclick="loadYesnoNeuralNetworkInternalData()">Load Yesno NN</button>
+        <button id="createYesnoNewNeuralNetworkBtn" class="btn btn-default" onclick="createNewYesnoNeuralNetwork()">Re-create YesNo NN</button>
+        <button id="saveYesNoTrainingDataBtn" class="btn btn-default" onclick="saveYesnoTrainingData()">Save Yesno Training Data</button>
+        <button id="saveYesNoNeuralNetworkDataBtn" class="btn btn-default" onclick="saveYesnoNeuralNetworkInternalData()">Save Yesno NN</button>
+        <br/>
+        Yesno:&nbsp;<span id="numYesnoTrainingData"></span> training samples<br/>
+
         <!--
+        <button id="loadCommandsTrainingDataDataBtn" class="btn btn-default" onclick="loadCommandsTrainingData()">Load Commands Training Data</button>
+        <button id="loadCommandsNeuralNetworkDataBtn" class="btn btn-default" onclick="loadCommandsNeuralNetworkInternalData()">Load Commands NN</button>
+        <button id="createCommandsNewNeuralNetworkBtn" class="btn btn-default" onclick="createNewCommandsNeuralNetwork()">Re-create Commands NN</button>
+        <button id="saveCommandsTrainingDataBtn" class="btn btn-default" onclick="saveCommandsTrainingData()">Save Commands Training Data</button>
+        <button id="saveCommandsNeuralNetworkDataBtn" class="btn btn-default" onclick="saveCommandsNeuralNetworkInternalData()">Save Commands NN</button>
+        <br/>
+        Commands:&nbsp;<span id="numCommandsTrainingData"></span> training samples<br/>
         -->
-        <audio id="player1" autoplay></audio>
-        <hr>
+
         <progress id="posVolumeProgressBar" value="0" max=129></progress><br />
-        <progress id="negVolumeProgressBar" value="0" max=129></progress><br />
-        <font size="+1">
-            <hr>
+
+        <button id="startBtn" class="btn btn-default" onclick="initialize(this)">Initialize</button>
+        <button id="recordYesnoBtn" class="btn btn-default" onclick="startRecordingYesno()">Record Yesno</button>
+        <!--
+        <button id="recordCommandsBtn" class="btn btn-default" onclick="startRecordingCommands()">Record Commands</button>
+        -->
+        <button id="startStopYesnoPredictionBtn" class="btn btn-default" onclick="startStopPrediction(this,'Predict Yesno')">Predict Yesno</button>
+        <!--
+        <button id="startStopCommandsPredictionBtn" class="btn btn-default" onclick="startStopPrediction(this,'Prediction Commands')">Predict Commands</button>
+        -->
+        <button id="trainYesnoBtn" class="btn btn-default" onclick="train(this)">Train</button>
+        <!--
+        <button id="trainCommandsBtn" class="btn btn-default" onclick="train(this)">Train Commands</button>
+        -->
 
 
-            <hr>
+        <hr>
+            <strong>Yesno:</strong>
+            <span id="yesnoListElem"></span>
+        <!--
+            <strong>Commands:</strong>
+            <span id="commandsListElem"></span>
+        -->
+
+        <hr>
+        <audio id="player1" autoplay></audio>
 
             <strong>Prediction:</strong>
-            <span id="percentCorrectElem"></span>
-            <div id="predictionElem"></div>
-            <hr>
-
-            <strong>Features:</strong>
-            <hr>
-            Phrase Total Ms: <span id="phraseTotalMsElem">0</span><br />
-            <div id="phrasePartsMsListElem"></div>
-            <hr>
-            Num Phrase Parts: <span id="numPhrasePartsElem">0</span><br />
-            Volume Array Len: <span id="volumeArrayLenElem">0</span><br />
-            <hr>
-            Sound Ms: <span id="soundMsElem">0</span><br />
-            Silence Ms: <span id="silenceMsElem">0</span><br />
-            Num Phrases: <span id="numPhrasesElem">0</span><br />
-        </font>
-        <hr>
-        Buffer Byte Size: <input id="bufferSizeInput" type="text" value="1024" onchange="adjustBufferSize(this)" /><br />
-        Analyze Loop Ms: <input id="loopMsInput" type="text" value="2" onchange="adjustAnalyzeLoopMs(this)" /><br />
+            <span id="predictionMaximumsElem"></span>
+            <span id="percentYesnoCorrectElem"></span>
+            <div id="predictionYesnoElem"></div>
+        <!--
+            <strong>Prediction:</strong>
+            <span id="percentCommandsCorrectElem"></span>
+            <div id="predictionCommandsElem"></div>
+        -->
+        <br/>
+        <button id="startConversationWithWallaceBtn" class="btn btn-default" onclick="startConversation(this)">Start Conversation</button>
+        <br/>
+        Buffer Byte Size: <input id="bufferSizeInput" type="text" value="2048" onchange="adjustBufferSize(this)" /><br />
+        Analyze Loop Ms: <input id="loopMsInput" type="text" value="4" onchange="adjustAnalyzeLoopMs(this)" /><br />
         Silence Ms: <input id="silenceMsInput" type="text" value="200" onchange="adjustSilenceMs(this)" /><br />
-        Min Sound Volume Delta: <input id="minSoundVolumeDeltaInput" type="text" value="4"
-            onchange="adjustMinSoundVolumeDelta(this)" /><br />
+        Min Sound Volume Delta: <input id="minSoundVolumeDeltaInput" type="text" value="5" onchange="adjustMinSoundVolumeDelta(this)" /><br />
         <hr>
     </div>
+    <a id="downloadAnchorElem" style="display:none"></a>
 </body>
-<script src="matrix.js"></script>
-<script src="nn.js"></script>
-<script src="index.js"></script>
-
+<script type="text/javascript" src="p5.min.js"></script>
+<script type="text/javascript" src="matrix.js"></script>
+<script type="text/javascript" src="nn.js"></script>
+<script type="text/javascript" src="mespeak.js"></script>
+<script type="text/javascript" src="voice.recognition.index.js"></script>
+<script type="text/javascript" src="text.to.speech.index.js"></script>
+<script type="text/javascript" src="conversation.index.js"></script>
 </html>
